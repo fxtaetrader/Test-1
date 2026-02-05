@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexus Video Editing (Lite)</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">N</div>
+      <div>
+        <h1>Nexus Video Editing</h1>
+        <p>Lite • Works on GitHub Pages</p>
+      </div>
+    </div>
+
+    <button id="exportBtn" class="primary" disabled>
+      Export HQ MP4
+    </button>
+  </header>
+
+  <main class="layout">
+
+    <section class="panel">
+      <h2>Upload</h2>
+
+      <input id="videoInput" type="file" accept="video/*" />
+
+      <div class="note">
+        Tip: For best performance, use videos under 2 minutes on Android.
+      </div>
+
+      <div id="status" class="status">Waiting...</div>
+    </section>
+
+    <section class="viewer">
+      <video id="video" controls></video>
+
+      <div class="timeline">
+        <div class="field">
+          <label>Trim Start (sec)</label>
+          <input id="trimStart" type="number" min="0" step="0.1" value="0"/>
+        </div>
+
+        <div class="field">
+          <label>Trim End (sec) (optional)</label>
+          <input id="trimEnd" type="number" min="0" step="0.1" placeholder="leave empty"/>
+        </div>
+
+        <div class="field">
+          <label>Aspect Ratio</label>
+          <select id="ratio">
+            <option value="original">Original</option>
+            <option value="16:9">16:9 (YouTube)</option>
+            <option value="9:16">9:16 (TikTok)</option>
+            <option value="1:1">1:1 (Square)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Filter</label>
+          <select id="filter">
+            <option value="none">None</option>
+            <option value="vivid">Vivid</option>
+            <option value="cinema">Cinema</option>
+            <option value="bw">Black & White</option>
+            <option value="warm">Warm</option>
+            <option value="cool">Cool</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Text Overlay</h2>
+
+      <input id="text" type="text" placeholder="Type text (example: NEXUS)" />
+
+      <div class="row">
+        <div class="field">
+          <label>X</label>
+          <input id="textX" type="number" value="40"/>
+        </div>
+
+        <div class="field">
+          <label>Y</label>
+          <input id="textY" type="number" value="60"/>
+        </div>
+
+        <div class="field">
+          <label>Size</label>
+          <input id="textSize" type="number" value="44"/>
+        </div>
+      </div>
+
+      <div class="note">
+        Text overlay works on export (not live preview).
+      </div>
+
+      <h2 style="margin-top:16px;">Sticker Overlay</h2>
+      <input id="imageInput" type="file" accept="image/*"/>
+
+      <div class="row">
+        <div class="field">
+          <label>Sticker X</label>
+          <input id="imgX" type="number" value="100"/>
+        </div>
+
+        <div class="field">
+          <label>Sticker Y</label>
+          <input id="imgY" type="number" value="100"/>
+        </div>
+      </div>
+
+      <div class="note">
+        For now, stickers are normal images. Next upgrade = auto background remove.
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Nexus Lite • Next: Voice templates + Auto Enhance + Sticker tracing
+  </footer>
+
+  <!-- FFmpeg.wasm -->
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/ffmpeg.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
